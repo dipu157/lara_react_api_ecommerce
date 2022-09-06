@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Card, Col, Container, Row } from 'react-bootstrap'
 
 export class FeaturedProduct extends Component {
   render() {
@@ -11,7 +11,12 @@ export class FeaturedProduct extends Component {
                 <p>Some of our Exclusive Collection</p>
             </div>
             <Row>
-                <Col>
+                <Col xl={2} lg={2} md={2} sm={2}>
+                <Card className="image-box">
+                  <Card.Body>
+
+                  </Card.Body>
+                </Card>
                 </Col>
             </Row>
         </Container>
