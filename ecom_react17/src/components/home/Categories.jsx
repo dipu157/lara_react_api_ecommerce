@@ -6,7 +6,7 @@ export class Categories extends Component {
     return (
       <div>
         <Container className="text-center" fluid={true}>
-            <div className='section-title text-center mb-55'>
+            <div className='section-title text-center mt-3 mb-55'>
                 <h2>Categories</h2>
                 <p>Some of our Exclusive Collection</p>
             </div>
