@@ -30,7 +30,7 @@ export class MegaMenu extends Component {
 
   render() {
     return (
-      <div className='accordionMenuDiv'>
+      <div className='accordionMenuDiv mt-3'>
         <div className='accordionMenuDivInside'>
             <button className='accordion'>
               <img className='accordionMenuIcon' src='https://cdn-icons-png.flaticon.com/128/739/739249.png' />
@@ -134,29 +134,6 @@ export class MegaMenu extends Component {
                 <li><a className='accordionItem' href='#'>Clothing1</a></li>
               </ul>
             </div>
-
-            <button className='accordion'>
-              <img className='accordionMenuIcon' src='https://cdn-icons-png.flaticon.com/128/739/739249.png' />
-              Men's Clothing
-            </button>
-
-            <div className='panel'>
-              <ul>
-                <li><a className='accordionItem' href='#'>Clothing1</a></li>
-              </ul>
-            </div>
-
-            <button className='accordion'>
-              <img className='accordionMenuIcon' src='https://cdn-icons-png.flaticon.com/128/739/739249.png' />
-              Men's Clothing
-            </button>
-
-            <div className='panel'>
-              <ul>
-                <li><a className='accordionItem' href='#'>Clothing1</a></li>
-              </ul>
-            </div>
-
 
             <button className='accordion'>
               <img className='accordionMenuIcon' src='https://cdn-icons-png.flaticon.com/128/739/739249.png' />
