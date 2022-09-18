@@ -12,7 +12,7 @@ export class FooterDesktop extends Component {
             <Row className='px-0 my-5'>
                 <Col className='p-2' lg={3} md={3} sm={6} xs={12} >
                     <h5 className='footer-menu-title'>Office Address</h5>
-                    <p>36, Dlikusha Road, Motijheel <br />
+                    <p>36, Dlikusha Road For the Test Purpose, Motijheel <br />
                     Email: support@mail.com </p>
                     <h5 className='footer-menu-title'>Social Link</h5>
                     <a href=""><i className="fab m-1 h4 fa-facebook"></i></a>
@@ -24,15 +24,15 @@ export class FooterDesktop extends Component {
                 <h5 className='footer-menu-title'>Company</h5>
                 <Link to="/" className="footer-link">About Us</Link><br />
                 <Link to="/" className="footer-link">Profile</Link><br />
-                <Link to="/" className="footer-link">Return Policy</Link><br />
-                <Link to="/" className="footer-link">Contact Us</Link>
+                <Link to="/purchase" className="footer-link">Return Policy</Link><br />
+                <Link to="/contact" className="footer-link">Contact Us</Link>
                 </Col>
 
                 <Col className='p-2' lg={3} md={3} sm={6} xs={12} >
                 <h5 className='footer-menu-title'>More Info </h5>
                 <Link to="/" className="footer-link">How to Purchase</Link><br />
                 <Link to="/" className="footer-link">Privacy Policy</Link><br />
-                <Link to="/" className="footer-link">Refund Policy</Link>
+                <Link to="/purchase" className="footer-link">Refund Policy</Link>
                 </Col>
 
                 <Col className='p-2' lg={3} md={3} sm={6} xs={12} >
