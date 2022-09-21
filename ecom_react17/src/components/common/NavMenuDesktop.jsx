@@ -3,6 +3,7 @@ import {Button, Col, Container, Navbar, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/easyshop.png';
 import MegaMenuAll from '../home/MegaMenuAll';
+import Bars from '../../assets/images/bars.png'
 
 class NavMenuDesktop extends Component {
 
@@ -47,7 +48,8 @@ class NavMenuDesktop extends Component {
           <Container fluid={true} className="fixed-top shadow-sm p-2 mb-0 bg-white">
             <Row>
               <Col className="p-1 mt-1">
-              <Button onClick={this.MenuBarClickHandler} className='btn'><i className='fa fa-bars'></i></Button>
+              {/* <Button onClick={this.MenuBarClickHandler} className='btn'><i className='fa fa-bars'></i></Button> */}
+              <img onClick={this.MenuBarClickHandler} src={Bars} className='bar-img' />
                 <Link to="/"><img className='nav-logo' src={Logo} /></Link>
               </Col>
 
@@ -61,10 +63,10 @@ class NavMenuDesktop extends Component {
               </Col>
                           
               <Col className="p-1 mt-1" style={{width:'600px', float:"right"}}>
-                <Link to="/" className="btn"> <i className='fa h4 fa-bell'></i>
+                <Link to="/notification" className="btn"> <i className='fa h4 fa-bell'></i>
                 <sup><span className="badge text-white bg-danger">5</span></sup>
                 </Link>
-                <Link to="/" className="btn"> <i className='fa h4 fa-heart'></i>
+                <Link to="/favourite" className="btn"> <i className='fa h4 fa-heart'></i>
                 <sup><span className="badge text-white bg-danger">3</span></sup>
                 </Link>
                 <a className="btn"><i className='fa h4 fa-mobile-alt'></i></a>

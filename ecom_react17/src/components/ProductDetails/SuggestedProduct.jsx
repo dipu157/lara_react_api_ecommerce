@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import { Card, Col, Container, Row } from 'react-bootstrap'
+import { Container,Row,Col, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export class FeaturedProduct extends Component {
+
+export class SuggestedProduct extends Component {
   render() {
     return (
-      <div>
+      <>
         <Container className="text-center">
             <div className='section-title text-center mb-55'>
-                <h2>Featured Product</h2>
+                <h3>You may also like</h3>
                 <p>Some of our Exclusive Collection</p>
             </div>
             <Row>
@@ -75,9 +76,9 @@ export class FeaturedProduct extends Component {
                 </Col>
             </Row>
         </Container>
-      </div>
+      </>
     )
   }
 }
 
-export default FeaturedProduct
+export default SuggestedProduct
