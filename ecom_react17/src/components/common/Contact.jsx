@@ -1,7 +1,66 @@
+import axios from 'axios';
 import React, { Component } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import AppURL from '../../api/AppURL';
+import validation from '../../validation/validation';
 
 export class Contact extends Component {
+
+  constructor(){
+    super();
+    this.state={
+      name:"",
+      email:"",
+      message:""
+    }
+  }
+
+  nameOnChange = (e) => {
+    let name = e.target.value;
+    this.setState({name:name});
+  }
+
+  emailOnChange = (e) => {
+    let email = e.target.value;
+    this.setState({email:email});
+  }
+
+  messageOnChange = (e) => {
+    let message = e.target.value;
+    this.setState({message:message});
+  }
+
+  onFormSubmit = (e) => {
+
+    let name = this.state.name;
+    let email = this.state.email;
+    let message = this.state.message;
+
+    if(message.length == 0 || name.length == 0){
+      alert("Empty Field");
+    }else{
+      let MyFormData = new FormData();
+      MyFormData.append("name",name)
+      MyFormData.append("email",email)
+      MyFormData.append("message",message)
+
+      axios.post(AppURL.PostContact,MyFormData)
+      .then(function (response){
+        if(response.status == 200 && response.data == 1){
+          alert("Message Sent Successfully")
+        }else{
+          alert("error");
+        }
+      })
+      .catch(function (error){
+        alert(error);
+      })
+    }
+
+    e.preventDefault();
+  }
+
+
   render() {
     return (
       <>
@@ -12,13 +71,13 @@ export class Contact extends Component {
                 <Row className='text-center'>
                     <Col className='d-flex justify-content-center' lg={6} md={6} sm={12} xs={12}>
 
-                        <Form className='onboardForm'>
+                        <Form onSubmit={this.onFormSubmit} className='onboardForm'>
                             <h2 className='section-title'>Contact Page</h2>
                             <h6 className='section-sub-title'>Please Contact With Us</h6>
-                            <input className='form-control m-2' type="text" placeholder="Enter Mobile Number" />
-                            <input className='form-control m-2' type="email" placeholder="Email" />
-                            <textarea className='form-control' placeholder='Message' rows={3} cols={2}></textarea>
-                            <Button className="btn btn-block m-2 site-btn-login">SEND</Button>
+                            <input onChange={this.nameOnChange} className='form-control m-2' type="text" placeholder="Name" />
+                            <input onChange={this.emailOnChange} className='form-control m-2' type="email" placeholder="Email" />
+                            <textarea onChange={this.messageOnChange} className='form-control m-2' placeholder='Message' rows={3} cols={2}></textarea>
+                            <Button type="submit" className="btn btn-block m-2 site-btn-login">SEND</Button>
                         </Form>
                         
                     </Col>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { Col, Container, Form, Row } from 'react-bootstrap'
 
 export class Purchase extends Component {
   render() {
