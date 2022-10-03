@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import AppURL from '../../api/AppURL';
 import validation from '../../validation/validation';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export class Contact extends Component {
 
@@ -36,9 +38,13 @@ export class Contact extends Component {
     let email = this.state.email;
     let message = this.state.message;
 
+    let sendBtn = document.getElementById('sendBtn');
+    let contactForm = document.getElementById('contactForm');
+
     if(message.length == 0 || name.length == 0){
-      alert("Empty Field");
+      toast.error("Empty Field");
     }else{
+      sendBtn.innerHTML = "Sending...";
       let MyFormData = new FormData();
       MyFormData.append("name",name)
       MyFormData.append("email",email)
@@ -47,13 +53,17 @@ export class Contact extends Component {
       axios.post(AppURL.PostContact,MyFormData)
       .then(function (response){
         if(response.status == 200 && response.data == 1){
-          alert("Message Sent Successfully")
+          toast.success("Message Sent Successfully");
+          sendBtn.innerHTML = "Send";
+          contactForm.reset();
         }else{
           alert("error");
+          sendBtn.innerHTML = "Send";
         }
       })
       .catch(function (error){
         alert(error);
+        sendBtn.innerHTML = "Send";
       })
     }
 
@@ -71,13 +81,13 @@ export class Contact extends Component {
                 <Row className='text-center'>
                     <Col className='d-flex justify-content-center' lg={6} md={6} sm={12} xs={12}>
 
-                        <Form onSubmit={this.onFormSubmit} className='onboardForm'>
+                        <Form id="contactForm" onSubmit={this.onFormSubmit} className='onboardForm'>
                             <h2 className='section-title'>Contact Page</h2>
                             <h6 className='section-sub-title'>Please Contact With Us</h6>
                             <input onChange={this.nameOnChange} className='form-control m-2' type="text" placeholder="Name" />
                             <input onChange={this.emailOnChange} className='form-control m-2' type="email" placeholder="Email" />
                             <textarea onChange={this.messageOnChange} className='form-control m-2' placeholder='Message' rows={3} cols={2}></textarea>
-                            <Button type="submit" className="btn btn-block m-2 site-btn-login">SEND</Button>
+                            <Button id="sendBtn" type="submit" className="btn btn-block m-2 site-btn-login">SEND</Button>
                         </Form>
                         
                     </Col>
@@ -95,9 +105,9 @@ export class Contact extends Component {
 
                 </Col>
             </Row>
+        </Container>
 
-            
-        </Container> 
+        <ToastContainer /> 
       </>
     )
   }
