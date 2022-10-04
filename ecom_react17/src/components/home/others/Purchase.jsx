@@ -43,7 +43,7 @@ export class Purchase extends Component {
       }); 
     }    
     else{
-      this.setState({parchase_guide:SiteInfoPurchase});
+      this.setState({parchase_guide:SiteInfoPurchase,loaderDiv:"d-none",mainDiv:""});
     }
   }
 
@@ -54,19 +54,40 @@ export class Purchase extends Component {
             <Row className="p-2">
                 <Col className="shadow-sm bg-white mt-2" lg={12} md={12} sm={12} xs={12}>
 
+                <div className={this.state.loaderDiv}>
+                  <div class="ph-item">
+                    <div class="ph-col-12">
+                      <div class="ph-row">
+
+                      <div class="ph-col-4"></div>
+                      <div class="ph-col-8 empty"></div>
+                      <div class="ph-col-6"></div>
+                      <div class="ph-col-6 empty"></div>
+                      <div class="ph-col-12"></div>
+                      <div class="ph-col-12"></div>
+                      <div class="ph-col-12"></div>
+                      <div class="ph-col-12"></div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              <div className={this.state.mainDiv}>
                 <Form className='onboardForm'>
                   <h1 className='text-center'>Purchase Related Declaration</h1>
-                    <h2 className='section-title'>Refund Policy</h2>
+                    <h2 className='section-title'>Purchase Policy</h2>
                     {this.state.parchase_guide}
 
                 </Form>
+              </div>
+                
 
 
                 </Col>
-            </Row>
-
-            
+            </Row>            
         </Container>  
+        <ToastContainer />
       </>
     )
   }
