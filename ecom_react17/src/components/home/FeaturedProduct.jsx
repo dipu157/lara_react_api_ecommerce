@@ -1,80 +1,67 @@
 import React, { Component } from 'react'
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import AppURL from '../../api/AppURL';
+import axios from 'axios';
+import FeaturedLoading from '../PlaceHolder/FeaturedLoading';
 
 export class FeaturedProduct extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      ProductData: [],
+      isLoading: "",
+      mainDiv: "d-none"
+    }
+  }
+
+  componentDidMount(){
+    
+      axios.get(AppURL.ProductListByRemark("Featured")).then(response => {
+        this.setState({
+          ProductData: response.data, isLoading: "d-none",
+          mainDiv: " "
+        });
+        }
+      ).catch(error => {
+      });
+  }
+
+
   render() {
+
+    const FeaturedList = this.state.ProductData;
+    const MyView = FeaturedList.map((FPList,i)=>{
+      return <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+      <Link className="text-link" to={"/productdetails/" + FPList.id} >
+      <Card className="image-box card">
+            <img className="center" src={FPList.image} />
+            <Card.Body>
+              <p className="product-name-on-card">{FPList.title}</p>
+              <p className="product-price-on-card">Price : <strike className="text-secondary">{FPList.price} BDT</strike> {FeaturedList.special_price} BDT</p>
+
+            </Card.Body>
+          </Card>
+      </Link>
+    </Col>
+    });
+
+
     return (
       <div>
-        <Container className="text-center">
-            <div className='section-title text-center mb-55'>
-                <h2>Featured Product</h2>
-                <p>Some of our Exclusive Collection</p>
+        <FeaturedLoading isLoading={this.state.isLoading} />
+
+        <div className={this.state.mainDiv}>
+          <Container className="text-center" fluid={true}>
+            <div className="section-title text-center mb-55"><h2>FEATURED PRODUCT</h2>
+              <p>Some Of Our Exclusive Collection, You May Like</p>
             </div>
             <Row>
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                  <Link to="/productdetails">
-                    <Card className="image-box card">
-                      <Card.Body>
-                        <img className='center' src='https://chaldn.com/_mpimage/peyaj-onion-imported-special-offer-100-gm-3-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D117394&q=best&v=1&m=400&webp=1' />
-                        <p className='product-name-on-card' >This is Test Product</p>
-                        <p className='product-price-on-card' >Price: 250 BDT</p>
-                      </Card.Body>
-                    </Card>
-                  </Link>
-                </Col>
-
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                  <Card.Body>
-                    <img className='center' src='https://chaldn.com/_mpimage/misti-kumra-sweet-pumpkin-1-pcs?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D35681&q=low&v=1&m=400&webp=1' />
-                    <p className='product-name-on-card' >This is Test Product</p>
-                    <p className='product-price-on-card' >Price: 250 BDT</p>
-                  </Card.Body>
-                </Card>
-                </Col>
-
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                  <Card.Body>
-                    <img className='center' src='https://chaldn.com/_mpimage/pui-shak-pui-spinach-1-bundle?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D7071&q=low&v=1&m=400&webp=1' />
-                    <p className='product-name-on-card' >This is Test Product</p>
-                    <p className='product-price-on-card' >Price: 250 BDT</p>
-                  </Card.Body>
-                </Card>
-                </Col>
-
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                  <Card.Body>
-                    <img className='center' src='https://chaldn.com/_mpimage/red-tomato-25-gm-500-gm?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D64361&q=low&v=1&m=400&webp=1' />
-                    <p className='product-name-on-card' >This is Test Product</p>
-                    <p className='product-price-on-card' >Price: 250 BDT</p>
-                  </Card.Body>
-                </Card>
-                </Col>
-
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                  <Card.Body>
-                    <img className='center' src='https://chaldn.com/_mpimage/potol-pointed-gourd-25-gm-500-gm?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D35666&q=best&v=1&m=400&webp=1' />
-                    <p className='product-name-on-card' >This is Test Product</p>
-                    <p className='product-price-on-card' >Price: 250 BDT</p>
-                  </Card.Body>
-                </Card>
-                </Col>
-
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                  <Card.Body>
-                    <img className='center' src='https://chaldn.com/_mpimage/boro-alu-big-diamond-potato-50-gm-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D79694&q=low&v=1&m=400&webp=1' />
-                    <p className='product-name-on-card' >This is Test Product</p>
-                    <p className='product-price-on-card' >Price: 250 BDT</p>
-                  </Card.Body>
-                </Card>
-                </Col>
+              {MyView}
             </Row>
-        </Container>
+          </Container>
+        </div>
       </div>
     )
   }

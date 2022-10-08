@@ -2,65 +2,61 @@ import React, { Component } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import MegaMenu from './MegaMenu'
 import HomeSlider from './HomeSlider'
+import AppURL from '../../api/AppURL';
+import axios from 'axios';
+import SliderLoading from '../PlaceHolder/SliderLoading';
 
 class HomeTop extends Component {
 
 
-  constructor()
-  {
+  constructor() {
     super();
-    this.state={
-      parchase_guide:"",
-      loaderDiv:"",
-      mainDiv:"d-none"
+    this.state = {
+      MenuData: [],
+      SliderData: [],
+      isLoading: "",
+      mainDiv: "d-none"
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
+    axios.get(AppURL.AllCategoryDetails).then(response => {
+      this.setState({ MenuData: response.data });
 
-    let SiteInfoPurchase = sessionStorage.getItem("AllSiteInfo");
+    }).catch(error => {
 
-    if(SiteInfoPurchase == null)
-    {
-      axios.get(AppURL.AllSiteInfo).then(response => {
-        let StatusCode = response.status;
-        if(StatusCode == 200){
-          let JsonData = (response.data)[0]['parchase_guide'];
-          this.setState({parchase_guide:JsonData,loaderDiv:"d-none",mainDiv:""});
+    });
 
-          sessionStorage.setItem("SiteInfoPurchase",JsonData)
-        }
-        else{
-          toast.error("Something Went Wrong",{
-              position:"bottom-center"
-          });
-        }
-      }).catch(error => {
-        toast.error("Something Went Wrong",{
-          position:"bottom-center"
+    axios.get(AppURL.AllSlider).then(response => {
+      this.setState({
+        SliderData: response.data, isLoading: "d-none",
+        mainDiv: ""
       });
-      }); 
-    }    
-    else{
-      this.setState({parchase_guide:SiteInfoPurchase,loaderDiv:"d-none",mainDiv:""});
-    }
+
+    }).catch(error => {
+
+    });
   }
-  
+
   render() {
     return (
-      <div>
-        <Container className='p-0 m-0 overflow-hidden' fluid={true}>
-            <Row>
-                <Col lg={3} md={3} sm={12}>
-                <MegaMenu />
-                </Col>
+      <>
+        <SliderLoading isLoading={this.state.isLoading} />
 
-                <Col lg={9} md={9} sm={12}>
-                <HomeSlider />
-                </Col>
+        <div className={this.state.mainDiv}>
+          <Container className="p-0 m-0 overflow-hidden" fluid={true}>
+            <Row>
+              <Col lg={3} md={3} sm={12}>
+                <MegaMenu data={this.state.MenuData} />
+              </Col>
+
+              <Col lg={9} md={9} sm={12}>
+                <HomeSlider data={this.state.SliderData} />
+              </Col>
             </Row>
-        </Container>
-      </div>
+          </Container>
+        </div>
+      </>
     )
   }
 }

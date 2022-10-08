@@ -1,83 +1,75 @@
 import React, { Component } from 'react'
-import { Container,Row,Col, Card } from 'react-bootstrap'
+import { Container, Row, Col, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
+import AppURL from '../../api/AppURL';
+import axios from 'axios'
 
 export class SuggestedProduct extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      ProductData: [],
+    }
+  }
+
+  componentDidMount() {
+    let subcategory = this.props.subcategory;
+
+    axios.get(AppURL.SimilarProduct(subcategory)).then(response => {
+
+      this.setState({ ProductData: response.data });
+
+    }).catch(error => {
+
+    });
+  }
+
   render() {
-    return (
-      <>
-        <Container className="text-center">
+
+    const MyList = this.state.ProductData;
+
+    if (MyList.length > 0) {
+      const MyView = MyList.map((ProductList, i) => {
+        return <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
+          <Link className="text-link" to={"/productdetails/" + ProductList.id} >
+            <Card className="image-box card">
+              <img className="center" src={ProductList.image} />
+              <Card.Body>
+                <p className="product-name-on-card">{ProductList.title}</p>
+                <p className="product-price-on-card">Price : <strike className="text-secondary">${ProductList.price}</strike> ${ProductList.special_price}</p>
+
+              </Card.Body>
+            </Card>
+          </Link>
+        </Col>
+      });
+
+      return (
+        <>
+          <Container className="text-center">
             <div className='section-title text-center mb-55'>
-                <h3>You may also like</h3>
-                <p>Some of our Exclusive Collection</p>
+              <h3>You may also like</h3>
+              <p>Some of our Exclusive Collection</p>
             </div>
             <Row>
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                  <Link to="/productdetails">
-                    <Card className="image-box card">
-                      <Card.Body>
-                        <img className='center' src='https://chaldn.com/_mpimage/peyaj-onion-imported-special-offer-100-gm-3-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D117394&q=best&v=1&m=400&webp=1' />
-                        <p className='product-name-on-card' >This is Test Product</p>
-                        <p className='product-price-on-card' >Price: 250 BDT</p>
-                      </Card.Body>
-                    </Card>
-                  </Link>
-                </Col>
-
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                  <Card.Body>
-                    <img className='center' src='https://chaldn.com/_mpimage/misti-kumra-sweet-pumpkin-1-pcs?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D35681&q=low&v=1&m=400&webp=1' />
-                    <p className='product-name-on-card' >This is Test Product</p>
-                    <p className='product-price-on-card' >Price: 250 BDT</p>
-                  </Card.Body>
-                </Card>
-                </Col>
-
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                  <Card.Body>
-                    <img className='center' src='https://chaldn.com/_mpimage/pui-shak-pui-spinach-1-bundle?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D7071&q=low&v=1&m=400&webp=1' />
-                    <p className='product-name-on-card' >This is Test Product</p>
-                    <p className='product-price-on-card' >Price: 250 BDT</p>
-                  </Card.Body>
-                </Card>
-                </Col>
-
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                  <Card.Body>
-                    <img className='center' src='https://chaldn.com/_mpimage/red-tomato-25-gm-500-gm?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D64361&q=low&v=1&m=400&webp=1' />
-                    <p className='product-name-on-card' >This is Test Product</p>
-                    <p className='product-price-on-card' >Price: 250 BDT</p>
-                  </Card.Body>
-                </Card>
-                </Col>
-
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                  <Card.Body>
-                    <img className='center' src='https://chaldn.com/_mpimage/potol-pointed-gourd-25-gm-500-gm?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D35666&q=best&v=1&m=400&webp=1' />
-                    <p className='product-name-on-card' >This is Test Product</p>
-                    <p className='product-price-on-card' >Price: 250 BDT</p>
-                  </Card.Body>
-                </Card>
-                </Col>
-
-                <Col className='p-1' key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-                <Card className="image-box card">
-                  <Card.Body>
-                    <img className='center' src='https://chaldn.com/_mpimage/boro-alu-big-diamond-potato-50-gm-1-kg?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D79694&q=low&v=1&m=400&webp=1' />
-                    <p className='product-name-on-card' >This is Test Product</p>
-                    <p className='product-price-on-card' >Price: 250 BDT</p>
-                  </Card.Body>
-                </Card>
-                </Col>
+              {MyView}
             </Row>
-        </Container>
-      </>
-    )
+          </Container>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <Container className="text-center" fluid={true}>
+            <div className="section-title text-center mb-55"><h2>YOU MAY ALSO LIKE </h2>
+              <p>Some Of Our Exclusive Collection, You May Like</p>
+            </div>
+            <p>There have no similar product </p>
+          </Container>
+        </>
+      )
+    }
   }
 }
 

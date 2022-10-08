@@ -103,17 +103,17 @@ export class FooterDesktop extends Component {
 
                 <Col className='p-2' lg={3} md={3} sm={6} xs={12} >
                 <h5 className='footer-menu-title'>Company</h5>
-                <Link to="/" className="footer-link">About Us</Link><br />
-                <Link to="/" className="footer-link">Profile</Link><br />
+                <Link to="/about" className="footer-link">About Us</Link><br />
+                <Link to="/profile" className="footer-link">Profile</Link><br />
                 <Link to="/purchase" className="footer-link">Return Policy</Link><br />
                 <Link to="/contact" className="footer-link">Contact Us</Link>
                 </Col>
 
                 <Col className='p-2' lg={3} md={3} sm={6} xs={12} >
                 <h5 className='footer-menu-title'>More Info </h5>
-                <Link to="/" className="footer-link">How to Purchase</Link><br />
-                <Link to="/" className="footer-link">Privacy Policy</Link><br />
-                <Link to="/purchase" className="footer-link">Refund Policy</Link>
+                <Link to="/purchase" className="footer-link">How to Purchase</Link><br />
+                <Link to="/privacy" className="footer-link">Privacy Policy</Link><br />
+                <Link to="/refund" className="footer-link">Refund Policy</Link>
                 </Col>
 
                 <Col className='p-2' lg={3} md={3} sm={6} xs={12} >

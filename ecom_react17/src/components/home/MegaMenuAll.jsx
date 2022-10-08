@@ -1,52 +1,64 @@
 import React, { Component } from 'react'
+import AppURL from '../../api/AppURL';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class MegaMenuAll extends Component {
 
-    constructor(){
-        super();
-        this.MegaMenu = this.MegaMenu.bind(this);
-      }
-    
-      componentDidMount(){
-        this.MegaMenu();
-      }
-    
-      MegaMenu(){
-        var acc = document.getElementsByClassName("accordionAll");
-        var accNum = acc.length;
-        var i;
-        for(i=0; i<accNum; i++){
-          acc[i].addEventListener("click", function (){
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if(panel.style.maxHeight){
-              panel.style.maxHeight = null;
-            }else{
-              panel.style.maxHeight = panel.scrollHeight+ "px"
-            }
-          })
+  constructor() {
+    super();
+    this.state = {
+      MenuData: []
+    }
+  }
+
+  componentDidMount() {
+    axios.get(AppURL.AllCategoryDetails).then(response => {
+      this.setState({ MenuData: response.data });
+    }).catch(error => {
+    });
+  }
+
+  MenuItemClick=(e)=>{
+    e.target.classList.toggle("active");
+        var panel = e.target.nextElementSibling;
+        if(panel.style.maxHeight){
+          panel.style.maxHeight = null;
+        }else{
+          panel.style.maxHeight = panel.scrollHeight+ "px"
         }
-      }
+  }
 
 
   render() {
-    return (
-      <div className='accordionMenuDivAll mt-3'>
-        <div className='accordionMenuDivInsideAll'>
-            <button className='accordionAll'>
-              <img className='accordionMenuIconAll' src='https://cdn-icons-png.flaticon.com/128/739/739249.png' />
-              Men's Clothing
+
+    const CatList = this.state.MenuData;
+    const MyView = CatList.map((CatList,i)=>{
+      return <div key={i.toString()}>
+          <button onClick={this.MenuItemClick} className='accordionAll'>
+              <img className='accordionMenuIconAll pe-1' src={CatList.category_image} />
+              {CatList.category_name}
             </button>
 
             <div className='panelAll'>
               <ul>
-                <li><a className='accordionItemAll' href='#'>Clothing1</a></li>
-                <li><a className='accordionItemAll' href='#'>Clothing2</a></li>
+                {
+                  (CatList.subcategory_name).map((SubList,i) => {
+                    return <li><Link to={"/productsubcategory/"+CatList.category_name+"/"+SubList.subcategory_name} className='accordionItemAll'>{SubList.subcategory_name}</Link></li>
+                  })
+                }
               </ul>
             </div>
+      </div>
+    });
 
-            </div>
+
+    return (
+      <div className='accordionMenuDivAll mt-3'>
+        <div className='accordionMenuDivInsideAll'>
+          {MyView}
         </div>
+      </div>
     )
   }
 }
