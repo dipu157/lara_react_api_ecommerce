@@ -15,11 +15,19 @@ class NavMenuDesktop extends Component {
       SideNavState: "sideNavClose",
       ContentOverstate: "ContentOverlayClose",
       SearchKey: "",
-      SearchRedirectStatus: false
+      SearchRedirectStatus: false,
+      cartCount:0
     }
     this.SearchOnChange = this.SearchOnChange.bind(this);
     this.SearchOnClick = this.SearchOnClick.bind(this);
     this.searchRedirect = this.searchRedirect.bind(this);
+  }
+
+  componentDidMount(){
+    let product_code = this.props.product_code;
+    axios.get(AppURL.CartCount(product_code)).then((response)=>{
+      this.setState({cartCount:response.data})
+    })
   }
 
   logout = () => {
@@ -77,6 +85,7 @@ class NavMenuDesktop extends Component {
     if (localStorage.getItem('token')) {
       buttons = (
         <div>
+          <Link to="/cart" className='cart-btn'><i className='fa fa-shopping-cart'> {this.state.cartCount} items</i></Link>
           <Link to="/profile" className='h4 btn'>PROFILE</Link>
           <Link to="/" onClick={this.logout} className='h4 btn'>LOGOUT</Link>
         </div>
@@ -85,6 +94,7 @@ class NavMenuDesktop extends Component {
     } else {
       buttons = (
         <div>
+          <Link to="/cart" className='cart-btn'><i className='fa fa-shopping-cart'> 0 items</i></Link>
           <Link to="/register" className='h4 btn'>REGISTER</Link>
           <Link to="/login" className='h4 btn'>LOGIN</Link>
         </div>
@@ -120,7 +130,7 @@ class NavMenuDesktop extends Component {
                   <Link to="/favourite" className="btn"> <i className='fa h4 fa-heart'></i>
                     <sup><span className="badge text-white bg-danger">3</span></sup>
                   </Link>
-                  <Link to="/cart" className='cart-btn'><i className='fa fa-shopping-cart'> 3 items</i></Link>
+                  
                 </Col>
 
                 <Col className="p-1 mt-1" style={{ width: '700px', float: "right" }}>

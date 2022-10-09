@@ -11,6 +11,7 @@ class AppURL {
     static UserRegister = this.BaseURL + "/register"
     static UserForgetPassword = this.BaseURL + "/forgetpassword"
     static UserResetPassword = this.BaseURL + "/resetpassword"
+    static AddToCart = this.BaseURL + "/addtocart"
 
     static ProductListByRemark(Remark) {
         return this.BaseURL + "/productlistbyremark/" + Remark;
@@ -39,6 +40,10 @@ class AppURL {
     static ReviewList(code){
         return this.BaseURL+"/reviewlist/"+code;
    }
+
+   static CartCount(product_code){
+    return this.BaseURL+"/cartcount/"+product_code;
+}
 }
 
 export default AppURL
