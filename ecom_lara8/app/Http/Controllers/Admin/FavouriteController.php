@@ -9,42 +9,42 @@ use App\Models\Favourites;
 
 class FavouriteController extends Controller
 {
-    // public function AddFavourite(Request $request){
+    public function AddFavourite(Request $request){
 
-    //     $product_code = $request->product_code;
-    //     $email = $request->email;
-    //     $productDetails = ProductList::where('product_code',$product_code)->get();
+        $product_code = $request->product_code;
+        $email = $request->email;
+        $productDetails = ProductList::where('product_code',$product_code)->get();
 
-    //     $result = Favourites::insert([
+        $result = Favourites::insert([
 
-    //         'product_name' => $productDetails[0]['title'],
-    //         'image' => $productDetails[0]['image'],
-    //         'product_code' => $product_code,
-    //         'email' => $email,
+            'product_name' => $productDetails[0]['title'],
+            'image' => $productDetails[0]['image'],
+            'product_code' => $product_code,
+            'email' => $email,
 
-    //     ]);
-    //     return $result;
+        ]);
+        return $result;
 
-    // } // End Mehtod
-
-
-    // public function FavouriteList(Request $request){
-
-    //     $email = $request->email;
-    //     $result = Favourites::where('email',$email)->get();
-    //     return $result;
-
-    // }// End Mehtod
+    } // End Mehtod
 
 
-    // public function FavouriteRemove(Request $request){
-    //     $product_code = $request->product_code;
-    //     $email = $request->email;
+    public function FavouriteList(Request $request){
 
-    //     $result = Favourites::where('product_code',$product_code)->where('email',$email )->delete();
-    //     return $result;
+        $email = $request->email;
+        $result = Favourites::where('email',$email)->get();
+        return $result;
 
-    // }// End Mehtod
+    }// End Mehtod
+
+
+    public function FavouriteRemove(Request $request){
+        $product_code = $request->product_code;
+        $email = $request->email;
+
+        $result = Favourites::where('product_code',$product_code)->where('email',$email )->delete();
+        return $result;
+
+    }// End Mehtod
 
 
 }

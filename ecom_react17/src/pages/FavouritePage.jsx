@@ -12,6 +12,7 @@ export class FavouritePage extends Component {
       }
 
   render() {
+    const User = this.props.user;
     return (
       <>
        <div className="Desktop">
@@ -22,7 +23,7 @@ export class FavouritePage extends Component {
           <NavMenuMobile />
         </div>
 
-        <Favourite />
+        <Favourite user={User} />
 
         <div className="Desktop">
         <FooterDesktop />

@@ -94,12 +94,12 @@ Route::post('/addtocart',[ProductCartController::class, 'addToCart']);
 Route::get('/cartcount/{email}',[ProductCartController::class, 'CartCount']);
 
 
-// // Favourite Route
-// Route::get('/favourite/{product_code}/{email}',[FavouriteController::class, 'AddFavourite']);
+// Favourite Route
+Route::get('/favourite/{product_code}/{email}',[FavouriteController::class, 'AddFavourite']);
 
-// Route::get('/favouritelist/{email}',[FavouriteController::class, 'FavouriteList']);
+Route::get('/favouritelist/{email}',[FavouriteController::class, 'FavouriteList']);
 
-// Route::get('/favouriteremove/{product_code}/{email}',[FavouriteController::class, 'FavouriteRemove']);
+Route::get('/favouriteremove/{product_code}/{email}',[FavouriteController::class, 'FavouriteRemove']);
 
 // // Cart List Route
 // Route::get('/cartlist/{email}',[ProductCartController::class, 'CartList']);

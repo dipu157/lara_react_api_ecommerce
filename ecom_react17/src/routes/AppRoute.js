@@ -75,7 +75,7 @@ class AppRoute extends Component {
 
           <Route exact path="/notification" render={(props) => <NotificationPage {...props} key={Date.now()} />} />
 
-          <Route exact path="/favourite" render={(props) => <FavouritePage  {...props} key={Date.now()} />} />
+          <Route exact path="/favourite" render={(props) => <FavouritePage user={this.state.user} setUser={this.setUser}  {...props} key={Date.now()} />} />
 
           <Route exact path="/cart" render={(props) => <CartPage user={this.state.user} setUser={this.setUser} {...props} key={Date.now()} />} />
 
