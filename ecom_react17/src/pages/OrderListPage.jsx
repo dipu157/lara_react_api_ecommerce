@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
-import Cart from '../components/Cart/Cart'
+import OrderList from '../components/Cart/OrderList'
 import FooterDesktop from '../components/common/FooterDesktop'
 import FooterMobile from '../components/common/FooterMobile'
 import NavMenuDesktop from '../components/common/NavMenuDesktop'
 import NavMenuMobile from '../components/common/NavMenuMobile'
 
-export class CartPage extends Component {
+export class OrderListPage extends Component {
 
     componentDidMount(){
-        window.scroll(0,0);
-      }
+        window.scroll(0,0)
+    }
 
   render() {
-    const User = this.props.user;
     return (
-      <>
-       <div className="Desktop">
+        <>
+        <div className="Desktop">
         <NavMenuDesktop />
         </div>
 
@@ -23,7 +22,7 @@ export class CartPage extends Component {
           <NavMenuMobile />
         </div>
 
-        <Cart user={User} />
+        <OrderList />
 
         <div className="Desktop">
         <FooterDesktop />
@@ -31,10 +30,10 @@ export class CartPage extends Component {
 
         <div className="Mobile">
           <FooterMobile />
-        </div> 
+        </div>
       </>
     )
   }
 }
 
-export default CartPage
+export default OrderListPage

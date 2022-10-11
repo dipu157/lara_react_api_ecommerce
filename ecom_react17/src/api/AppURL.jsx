@@ -12,6 +12,7 @@ class AppURL {
     static UserForgetPassword = this.BaseURL + "/forgetpassword"
     static UserResetPassword = this.BaseURL + "/resetpassword"
     static AddToCart = this.BaseURL + "/addtocart"
+    static CartOrder = this.BaseURL + "/cartorder"
 
     static ProductListByRemark(Remark) {
         return this.BaseURL + "/productlistbyremark/" + Remark;
@@ -55,6 +56,26 @@ class AppURL {
 
     static FavouriteRemove(product_code,email){
         return this.BaseURL+"/favouriteremove/"+product_code+"/"+email;
+    }
+
+    static CartList(email){
+        return this.BaseURL+"/cartlist/"+email;
+    }
+
+    static RemoveCartList(id){
+        return this.BaseURL+"/removecartlist/"+id;
+    }
+
+    static CartItemPlus(id, quantity, price){
+        return this.BaseURL+"/cartitemplus/"+id+"/"+quantity+"/"+price;
+    }
+
+    static CartItemMinus(id, quantity, price){
+        return this.BaseURL+"/cartitemminus/"+id+"/"+quantity+"/"+price;
+    }
+
+    static OrderListByUser(email){
+        return this.BaseURL+"/orderlistbyuser/"+email;
     }
 }
 

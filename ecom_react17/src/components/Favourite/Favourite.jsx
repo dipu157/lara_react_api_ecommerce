@@ -29,13 +29,12 @@ export class Favourite extends Component {
   }
 
   removeItem = (event) => {
-    //let product_code = event.target.getAttribute("code");
-    let product_code = 1;
+    let product_code = event.target.getAttribute("data-code");
     let email = this.props.user.email;
 
     //console.log(event.target.getAttribute('code'));
 
-    alert(event.target.getAttribute("code"));
+    alert(event.target.getAttribute("data-code"));
 
     axios.get(AppURL.FavouriteRemove(product_code,email)).then(response =>{               
         cogoToast.success("Product Item Remove",{position:'top-right'});   
@@ -70,7 +69,7 @@ PageRefresh =() => {
       <img className='center w-75' src={FPList.image} />
         <Card.Body>    
           <p className='product-name-on-card' >{FPList.product_name}</p>
-          <Button onClick={this.removeItem} code={FPList.product_code} className='btn btn-sm'><i className='fa fa-trash-alt'>Remove</i></Button>
+          <Button onClick={this.removeItem} data-code={FPList.product_code} className='btn btn-sm'><i className='fa fa-trash-alt'>Remove</i></Button>
         </Card.Body>
       </Card>
       </Col>

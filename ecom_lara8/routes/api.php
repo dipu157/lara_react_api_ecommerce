@@ -101,20 +101,20 @@ Route::get('/favouritelist/{email}',[FavouriteController::class, 'FavouriteList'
 
 Route::get('/favouriteremove/{product_code}/{email}',[FavouriteController::class, 'FavouriteRemove']);
 
-// // Cart List Route
-// Route::get('/cartlist/{email}',[ProductCartController::class, 'CartList']);
+// Cart List Route
+Route::get('/cartlist/{email}',[ProductCartController::class, 'CartList']);
 
-// Route::get('/removecartlist/{id}',[ProductCartController::class, 'RemoveCartList']);
+Route::get('/removecartlist/{id}',[ProductCartController::class, 'RemoveCartList']);
 
-// Route::get('/cartitemplus/{id}/{quantity}/{price}',[ProductCartController::class, 'CartItemPlus']);
+Route::get('/cartitemplus/{id}/{quantity}/{price}',[ProductCartController::class, 'CartItemPlus']);
 
-// Route::get('/cartitemminus/{id}/{quantity}/{price}',[ProductCartController::class, 'CartItemMinus']);
+Route::get('/cartitemminus/{id}/{quantity}/{price}',[ProductCartController::class, 'CartItemMinus']);
 
 
-// // Cart Order Route
-// Route::post('/cartorder',[ProductCartController::class, 'CartOrder']);
+// Cart Order Route
+Route::post('/cartorder',[ProductCartController::class, 'CartOrder']);
 
-// Route::get('/orderlistbyuser/{email}',[ProductCartController::class, 'OrderListByUser']);
+Route::get('/orderlistbyuser/{email}',[ProductCartController::class, 'OrderListByUser']);
 
 // // Post Product Review Route
 // Route::post('/postreview',[ReviewController::class, 'PostReview']);
