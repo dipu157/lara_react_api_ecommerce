@@ -12,6 +12,7 @@ export class OrderListPage extends Component {
     }
 
   render() {
+    const User = this.props.user;
     return (
         <>
         <div className="Desktop">
@@ -22,7 +23,7 @@ export class OrderListPage extends Component {
           <NavMenuMobile />
         </div>
 
-        <OrderList />
+        <OrderList user={User} />
 
         <div className="Desktop">
         <FooterDesktop />

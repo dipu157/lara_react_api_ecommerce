@@ -32,8 +32,6 @@ export class Favourite extends Component {
     let product_code = event.target.getAttribute("data-code");
     let email = this.props.user.email;
 
-    //console.log(event.target.getAttribute('code'));
-
     alert(event.target.getAttribute("data-code"));
 
     axios.get(AppURL.FavouriteRemove(product_code,email)).then(response =>{               

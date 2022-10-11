@@ -116,9 +116,9 @@ Route::post('/cartorder',[ProductCartController::class, 'CartOrder']);
 
 Route::get('/orderlistbyuser/{email}',[ProductCartController::class, 'OrderListByUser']);
 
-// // Post Product Review Route
-// Route::post('/postreview',[ReviewController::class, 'PostReview']);
+// Post Product Review Route
+Route::post('/postreview',[ReviewController::class, 'PostReview']);
 
 // Review Product Route
-Route::get('/reviewlist/{product_code}',[ReviewController::class, 'ReviewList']);
+Route::get('/reviewlist/{product_id}',[ReviewController::class, 'ReviewList']);
 
