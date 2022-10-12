@@ -123,7 +123,7 @@ class ProductCartController extends Controller
             $resultInsert = CartOrder::insert([
                 'invoice_no' => "Easy".$invoice_no,
                 'product_name' => $CartListItem['product_name'],
-                'product_code' => $CartListItem['product_code'],
+                'product_id' => $CartListItem['product_code'],
                 'size' => $CartListItem['size'],
                 'color' => $CartListItem['color'],
                 'quantity' => $CartListItem['quantity'],

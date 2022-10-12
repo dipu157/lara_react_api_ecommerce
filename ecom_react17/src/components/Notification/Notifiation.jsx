@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Col, Container, Row, Card, Modal, Button } from 'react-bootstrap';
 import AppURL from '../../api/AppURL';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 
 class Notifiation extends Component {
 
@@ -43,6 +44,10 @@ class Notifiation extends Component {
 
 
   render() {
+
+    if (!localStorage.getItem('token')) {
+      return <Redirect to="/login" />
+  }
 
     const Notifications = this.state.NotificationData;
     const MyView = Notifications.map((NotifData,i)=>{

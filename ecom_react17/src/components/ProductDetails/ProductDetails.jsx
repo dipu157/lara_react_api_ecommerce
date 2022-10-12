@@ -195,7 +195,7 @@ export class ProductDetails extends Component {
                MyFormData.append("product_code",productCode);
                MyFormData.append("email",email);
                
-               axios.post(AppURL.addToCart,MyFormData).then(response =>{
+               axios.post(AppURL.AddToCart,MyFormData).then(response =>{
                     if(response.data===1){
                          cogoToast.success("Product Added Successfully",{position:'top-right'});
                          this.setState({OrderNow:"Order Now"})
@@ -211,11 +211,18 @@ export class ProductDetails extends Component {
                          this.setState({addToCart:"Add To Cart"})
      
                });
-
-          }          
-
-
+          }       
      }  /// End orderNow Mehtod 
+
+     PageRedirect = () => {
+          if(this.state.PageRedirectStauts===true){
+               return (
+                    <Redirect to="/cart" />
+               )
+  
+          }
+     }
+
 
      render() {
 
@@ -370,7 +377,7 @@ export class ProductDetails extends Component {
                                         </Col>
 
                                         <Col className="" md={6} lg={6} sm={12} xs={12}>
-                                             <ReviewList code={product_id} />
+                                             <ReviewList code={product_code} />
                                         </Col>
 
                                    </Row>
@@ -382,6 +389,8 @@ export class ProductDetails extends Component {
                     <SuggestedProduct subcategory={subcategory} />
 
                     {this.PageRefresh()}
+                    
+                    {this.PageRedirect()}
                </>
           )
      }
