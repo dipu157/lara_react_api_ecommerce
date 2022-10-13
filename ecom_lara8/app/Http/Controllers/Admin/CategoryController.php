@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\SubCategory;
-use Faker\Provider\Image;
+use Image;
 
 class CategoryController extends Controller
 {
@@ -23,9 +23,7 @@ class CategoryController extends Controller
                 'category_image' => $value['category_image'],
                 'subcategory_name' => $subcategory
             ];
-
             array_push($categoryDetailsArray, $item);
-
         } 
         return $categoryDetailsArray;
 
@@ -50,7 +48,8 @@ class CategoryController extends Controller
 
         $request->validate([
             'category_name' => 'required',
-        ],[
+        ],
+        [
             'category_name.required' => 'Input Category Name'
 
         ]);
@@ -58,7 +57,7 @@ class CategoryController extends Controller
         $image = $request->file('category_image');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         Image::make($image)->resize(128,128)->save('upload/category/'.$name_gen);
-        $save_url = 'http://127.0.0.1:8000/upload/category/'.$name_gen;
+        $save_url = 'http://localhost:8000/upload/category/'.$name_gen;
 
         Category::insert([
             'category_name' => $request->category_name,
