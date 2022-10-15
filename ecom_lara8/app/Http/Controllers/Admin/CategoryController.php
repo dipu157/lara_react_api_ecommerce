@@ -24,10 +24,10 @@ class CategoryController extends Controller
                 'subcategory_name' => $subcategory
             ];
             array_push($categoryDetailsArray, $item);
-        } 
+        }
         return $categoryDetailsArray;
 
-    } // End Mehtod 
+    } // End Mehtod
 
 
 
@@ -36,12 +36,12 @@ class CategoryController extends Controller
         $category = Category::latest()->get();
         return view('backend.category.category_view',compact('category'));
 
-    } // End Mehtod 
+    } // End Mehtod
 
 
     public function AddCategory(){
       return view('backend.category.category_add');
-    } // End Mehtod 
+    } // End Mehtod
 
 
     public function StoreCategory(Request $request){
@@ -71,7 +71,7 @@ class CategoryController extends Controller
 
         return redirect()->route('all.category')->with($notification);
 
-    }// End Mehtod 
+    }// End Mehtod
 
 
     public function EditCategory($id){
@@ -79,7 +79,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         return view('backend.category.category_edit',compact('category'));
 
-    } //End Method 
+    } //End Method
 
 
     public function UpdateCategory(Request $request){
@@ -110,7 +110,7 @@ class CategoryController extends Controller
 
              Category::findOrFail($category_id)->update([
             'category_name' => $request->category_name,
-           
+
         ]);
 
         $notification = array(
@@ -122,7 +122,7 @@ class CategoryController extends Controller
 
         }
 
-    } //End Method 
+    } //End Method
 
 
 
@@ -135,9 +135,9 @@ class CategoryController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);     
+        return redirect()->back()->with($notification);
 
-    } //End Method 
+    } //End Method
 
 
 
@@ -148,14 +148,14 @@ class CategoryController extends Controller
    $subcategory = SubCategory::latest()->get();
         return view('backend.subcategory.subcategory_view',compact('subcategory'));
 
-    } //End Method 
+    } //End Method
 
 
     public function AddSubCategory(){
 
         $category = Category::latest()->get();
          return view('backend.subcategory.subcategory_add',compact('category'));
-    } //End Method 
+    } //End Method
 
 
     public function StoreSubCategory(Request $request){
@@ -167,8 +167,6 @@ class CategoryController extends Controller
             'subcategory_name.required' => 'Input SubCategory Name'
 
         ]);
-
-        
 
         Subcategory::insert([
             'category_name' => $request->category_name,
@@ -182,7 +180,7 @@ class CategoryController extends Controller
 
         return redirect()->route('all.subcategory')->with($notification);
 
-    } //End Method 
+    } //End Method
 
 
     public function EditSubCategory($id){
@@ -191,7 +189,7 @@ class CategoryController extends Controller
         $subcategory = SubCategory::findOrFail($id);
         return view('backend.subcategory.subcategory_edit',compact('category','subcategory'));
 
-    } //End Method 
+    } //End Method
 
     public function UpdateSubCategory(Request $request){
 
@@ -209,7 +207,7 @@ class CategoryController extends Controller
 
         return redirect()->route('all.subcategory')->with($notification);
 
-    } //End Method 
+    } //End Method
 
 
     public function DeleteSubCategory($id){
@@ -222,5 +220,5 @@ class CategoryController extends Controller
 
         return redirect()->back()->with($notification);
 
-    } //End Method 
+    } //End Method
 }

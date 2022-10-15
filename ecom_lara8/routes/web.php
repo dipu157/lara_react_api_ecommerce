@@ -1,15 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController; 
-use App\Http\Controllers\Admin\CategoryController; 
-use App\Http\Controllers\Admin\SliderController; 
-use App\Http\Controllers\Admin\ProductListController; 
-use App\Http\Controllers\Admin\ContactController; 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\ProductListController;
+use App\Http\Controllers\Admin\ContactController;
 
-use App\Http\Controllers\Admin\ReviewController; 
-use App\Http\Controllers\Admin\SiteInfoController; 
-use App\Http\Controllers\Admin\ProductCartController; 
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\SiteInfoController;
+use App\Http\Controllers\Admin\ProductCartController;
 
 
 /*
@@ -24,14 +24,14 @@ use App\Http\Controllers\Admin\ProductCartController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('admin.index');
 })->name('dashboard');
- 
-  // Admin Logout Routes 
+
+  // Admin Logout Routes
 Route::get('/logout',[AdminController::class, 'AdminLogout'])->name('admin.logout');
 
 Route::prefix('admin')->group(function(){
@@ -58,86 +58,86 @@ Route::post('/store',[CategoryController::class, 'StoreCategory'])->name('catego
 Route::get('/edit/{id}',[CategoryController::class, 'EditCategory'])->name('category.edit');
 
 Route::post('/update',[CategoryController::class, 'UpdateCategory'])->name('category.update');
- 
+
 Route::get('/delete/{id}',[CategoryController::class, 'DeleteCategory'])->name('category.delete');
 });
 
 
 
-// Route::prefix('subcategory')->group(function(){
+Route::prefix('subcategory')->group(function(){
 
-// Route::get('/all',[CategoryController::class, 'GetAllSubCategory'])->name('all.subcategory');
+Route::get('/all',[CategoryController::class, 'GetAllSubCategory'])->name('all.subcategory');
 
-// Route::get('/add',[CategoryController::class, 'AddSubCategory'])->name('add.subcategory');
+Route::get('/add',[CategoryController::class, 'AddSubCategory'])->name('add.subcategory');
 
-// Route::post('/store',[CategoryController::class, 'StoreSubCategory'])->name('subcategory.store');
+Route::post('/store',[CategoryController::class, 'StoreSubCategory'])->name('subcategory.store');
 
-// Route::get('/edit/{id}',[CategoryController::class, 'EditSubCategory'])->name('subcategory.edit');
+Route::get('/edit/{id}',[CategoryController::class, 'EditSubCategory'])->name('subcategory.edit');
 
-// Route::post('/update',[CategoryController::class, 'UpdateSubCategory'])->name('subcategory.update');
- 
-// Route::get('/delete/{id}',[CategoryController::class, 'DeleteSubCategory'])->name('subcategory.delete');
-// });
+Route::post('/update',[CategoryController::class, 'UpdateSubCategory'])->name('subcategory.update');
 
-
-
-// Route::prefix('slider')->group(function(){
-
-// Route::get('/all',[SliderController::class, 'GetAllSlider'])->name('all.slider');
-
-// Route::get('/add',[SliderController::class, 'AddSlider'])->name('add.slider');
-
-// Route::post('/store',[SliderController::class, 'StoreSlider'])->name('slider.store');
-
-// Route::get('/edit/{id}',[SliderController::class, 'EditSlider'])->name('slider.edit');
-
-// Route::post('/update',[SliderController::class, 'UpdateSlider'])->name('slider.update');
- 
-// Route::get('/delete/{id}',[SliderController::class, 'DeleteSlider'])->name('slider.delete');
-// });
+Route::get('/delete/{id}',[CategoryController::class, 'DeleteSubCategory'])->name('subcategory.delete');
+});
 
 
 
-// Route::prefix('product')->group(function(){
+Route::prefix('slider')->group(function(){
 
-// Route::get('/all',[ProductListController::class, 'GetAllProduct'])->name('all.product');
+Route::get('/all',[SliderController::class, 'GetAllSlider'])->name('all.slider');
 
-// Route::get('/add',[ProductListController::class, 'AddProduct'])->name('add.product');
+Route::get('/add',[SliderController::class, 'AddSlider'])->name('add.slider');
 
-// Route::post('/store',[ProductListController::class, 'StoreProduct'])->name('product.store');
+Route::post('/store',[SliderController::class, 'StoreSlider'])->name('slider.store');
 
-// Route::get('/edit/{id}',[ProductListController::class, 'EditProduct'])->name('product.edit');
+Route::get('/edit/{id}',[SliderController::class, 'EditSlider'])->name('slider.edit');
 
-// Route::post('/update',[SliderController::class, 'UpdateSlider'])->name('slider.update');
- 
-// Route::get('/delete/{id}',[SliderController::class, 'DeleteSlider'])->name('slider.delete');
-// });
+Route::post('/update',[SliderController::class, 'UpdateSlider'])->name('slider.update');
 
-// /// Contact Message Route 
-// Route::get('/all/message',[ContactController::class, 'GetAllMessage'])->name('contact.message');
-
-// Route::get('/message/delete/{id}',[ContactController::class, 'DeleteMessage'])->name('message.delete');
-
-// /// Product Review Route 
-// Route::get('/all/review',[ReviewController::class, 'GetAllReview'])->name('all.review');
-
-// /// Site Info Route 
-// Route::get('/getsite/info',[SiteInfoController::class, 'GetSiteInfo'])->name('getsite.info');
-
-// Route::post('/update/siteinfo',[SiteInfoController::class, 'UpdateSiteInfo'])->name('update.siteinfo');
+Route::get('/delete/{id}',[SliderController::class, 'DeleteSlider'])->name('slider.delete');
+});
 
 
-// Route::prefix('order')->group(function(){
 
-// Route::get('/pending',[ProductCartController::class, 'PendingOrder'])->name('pending.order');
+Route::prefix('product')->group(function(){
 
-// Route::get('/processing',[ProductCartController::class, 'ProcessingOrder'])->name('processing.order');
+Route::get('/all',[ProductListController::class, 'GetAllProduct'])->name('all.product');
 
-// Route::get('/complete',[ProductCartController::class, 'CompleteOrder'])->name('complete.order');
+Route::get('/add',[ProductListController::class, 'AddProduct'])->name('add.product');
 
-// Route::get('/details/{id}',[ProductCartController::class, 'OrderDetails'])->name('order.details');
+Route::post('/store',[ProductListController::class, 'StoreProduct'])->name('product.store');
 
-// Route::get('/status/processing/{id}',[ProductCartController::class, 'PendingToProcessing'])->name('pending.processing');
+Route::get('/edit/{id}',[ProductListController::class, 'EditProduct'])->name('product.edit');
 
-// Route::get('/status/complete/{id}',[ProductCartController::class, 'ProcessingToComplete'])->name('processing.complete');
-// });
+Route::post('/update',[ProductListController::class, 'UpdateProduct'])->name('product.update');
+
+Route::get('/delete/{id}',[ProductListController::class, 'DeleteProduct'])->name('product.delete');
+});
+
+/// Contact Message Route
+Route::get('/all/message',[ContactController::class, 'GetAllMessage'])->name('contact.message');
+
+Route::get('/message/delete/{id}',[ContactController::class, 'DeleteMessage'])->name('message.delete');
+
+/// Product Review Route
+Route::get('/all/review',[ReviewController::class, 'GetAllReview'])->name('all.review');
+
+/// Site Info Route
+Route::get('/getsite/info',[SiteInfoController::class, 'GetSiteInfo'])->name('getsite.info');
+
+Route::post('/update/siteinfo',[SiteInfoController::class, 'UpdateSiteInfo'])->name('update.siteinfo');
+
+
+Route::prefix('order')->group(function(){
+
+Route::get('/pending',[ProductCartController::class, 'PendingOrder'])->name('pending.order');
+
+Route::get('/processing',[ProductCartController::class, 'ProcessingOrder'])->name('processing.order');
+
+Route::get('/complete',[ProductCartController::class, 'CompleteOrder'])->name('complete.order');
+
+Route::get('/details/{id}',[ProductCartController::class, 'OrderDetails'])->name('order.details');
+
+Route::get('/status/processing/{id}',[ProductCartController::class, 'PendingToProcessing'])->name('pending.processing');
+
+Route::get('/status/complete/{id}',[ProductCartController::class, 'ProcessingToComplete'])->name('processing.complete');
+});
